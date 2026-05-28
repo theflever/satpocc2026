@@ -1,15 +1,5 @@
 import { useEffect, useState } from "react";
 
-const API_KEY = "c787aabf5a2a837412c56b9da6d9ad165b26fbfec9a8c3243d20ea4ec741e411";
-const ENDPOINT = "https://serpapi.com/search";
-const params = {
-  engine: "google_play",
-  q: "honkai",
-  hl: "en",
-  api_key: API_KEY,
-};
-
-
 function Game() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,10 +7,7 @@ function Game() {
   const [highlight, setHighlight] = useState(null);
 
   useEffect(() => {
-    const serpUrl = `${ENDPOINT}?${new URLSearchParams(params)}`;
-    const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(serpUrl);
-    
-    fetch(proxyUrl)
+    fetch("/api/search")
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
