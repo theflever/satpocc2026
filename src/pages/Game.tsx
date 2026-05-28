@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 function Game() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [highlight, setHighlight] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [highlight, setHighlight] = useState(null);
 
   useEffect(() => {
     fetch("/api/search")
